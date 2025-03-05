@@ -1,0 +1,66 @@
+Subject: Delivery Status Notification (Failure)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Date: 7/24/2023, 1:50 PM
+To: mark.cao@gmail.com
+
+
+Error Icon
+
+
+    Address not found
+
+Your message wasn't delivered to *michelle@sterlingseniorliving.com* 
+because the address couldn't be found, or is unable to receive mail.
+LEARN MORE <http://x.co/irbounce>
+Warning This link will take you to a third-party site
+
+The response from the remote server was:
+
+550 5.1.1 <michelle@sterlingseniorliving.com> Recipient not found. 
+<http://x.co/irbounce>
+
+
+Reporting-MTA: dns; googlemail.com
+Arrival-Date: Mon, 24 Jul 2023 13:49:59 -0700 (PDT)
+X-Original-Message-ID:<CAB=4odtffvGkFbDsPTjXd+SR5MbR0Nau_DwD2ten3Bdkx5194A@mail.gmail.com>
+
+Final-Recipient: rfc822;michelle@sterlingseniorliving.com
+Action: failed
+Status: 5.1.1
+Remote-MTA: dns; smtp.secureserver.net. (68.178.213.203, the server for the
+  domain sterlingseniorliving.com.)
+Diagnostic-Code: smtp; 550 5.1.1<michelle@sterlingseniorliving.com> Recipient not found.<http://x.co/irbounce>
+Last-Attempt-Date: Mon, 24 Jul 2023 13:50:04 -0700 (PDT)
+
+
+ForwardedMessage.eml
+
+Subject:
+Our father's arrival on Thursday after 11 AM
+From:
+Mark Cao <mark.cao@gmail.com>
+Date:
+7/24/2023, 1:49 PM
+
+To:
+michelle@sterlingseniorliving.com
+CC:
+Denise Powell <denise@qsps.org>, Hanh Yu <hanhcaoyu@gmail.com>
+
+
+Hi Michelle,
+
+Our father's case manager, Sein Jeong, rescheduled him to be 
+discharged from The Pavilion at Sunny Hills (Fullerton) on Thursday, 
+7/27 at 11 AM.  I am letting you know (probably redundantly), just in case.
+
+FYI, my sister, Hanh, will be at Sterling to help our father to 
+transition to the home.  Would you please let the staff know, as needed.
+
+Best regards,
+Mark
+(714) 699-4447
+
+Attachments:
+
+ForwardedMessage.eml	3.4 KB

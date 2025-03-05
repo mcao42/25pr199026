@@ -1,0 +1,53 @@
+Subject: Delivery Status Notification (Delay)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Date: 1/19/2025, 12:56 PM
+To: mark.cao@gmail.com
+
+
+Error Icon
+
+
+    Delivery incomplete
+
+There was a temporary problem delivering your message to 
+*hanglhoang@gmail.com*. Gmail will retry for 45 more hours. You'll be 
+notified if the delivery fails permanently.
+LEARN MORE <https://support.google.com/mail/?p=OverQuotaTemp>
+
+The response was:
+
+452 4.2.2 The recipient's inbox is out of storage space. Please direct 
+the recipient to https://support.google.com/mail/?p=OverQuotaTemp 
+af79cd13be357-7be6146859asor954745885a.3 - gsmtp
+
+
+Reporting-MTA: dns; googlemail.com
+Arrival-Date: Sat, 18 Jan 2025 10:55:52 -0800 (PST)
+X-Original-Message-ID:<CAB=4odu_7J9n2Jyjgo7J9+J3yuJouZhmfFNKWfgqcGeJJ8a3HA@mail.gmail.com>
+
+Final-Recipient: rfc822;hanglhoang@gmail.com
+Action: delayed
+Status: 4.2.2
+Diagnostic-Code: smtp; 452-4.2.2 The recipient's inbox is out of storage space. Please direct the
+  452-4.2.2 recipient to
+  452 4.2.2https://support.google.com/mail/?p=OverQuotaTemp af79cd13be357-7be6146859asor954745885a.3 - gsmtp
+Last-Attempt-Date: Sun, 19 Jan 2025 12:56:14 -0800 (PST)
+Will-Retry-Until: Tue, 21 Jan 2025 10:55:52 -0800 (PST)
+
+
+ForwardedMessage.eml
+
+Subject:
+Fwd: Permission revoked for Jacqulyn Huynh and Hanh Yu
+From:
+Mark Cao <mark.cao@gmail.com>
+Date:
+1/18/2025, 10:55 AM
+
+To:
+Lucy Hoang <hanglhoang@gmail.com>
+
+
+Attachments:
+
+ForwardedMessage.eml	2.7 KB

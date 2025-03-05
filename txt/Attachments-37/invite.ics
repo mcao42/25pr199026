@@ -1,0 +1,58 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+X-LIC-LOCATION:America/Los_Angeles
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/Los_Angeles:20241012T160000
+DTEND;TZID=America/Los_Angeles:20241012T170000
+DTSTAMP:20231005T230216Z
+ORGANIZER;CN=Yu Family Master Calendar:mailto:rbadja8sdd16ci0dkso99irits@gr
+ oup.calendar.google.com
+UID:cpj64d1m68sj6b9j6sq64b9kcdgjabb170qm2b9i6oojcchp6kpm4dj36o@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=jacquelinekyu@gmail.com;X-NUM-GUESTS=0:mailto:jacquelinekyu@gmail.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=yu.jeffrey.c@gmail.com;X-NUM-GUESTS=0:mailto:yu.jeffrey.c@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=mark.cao@gmail.com;X-NUM-GUESTS=0:mailto:mark.cao@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=carolinejyu@gmail.com;X-NUM-GUESTS=0:mailto:carolinejyu@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=thanhxhuynh2003@yahoo.com;X-NUM-GUESTS=0:mailto:thanhxhuynh2003@yah
+ oo.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/hbb-kyqc-ugw
+X-MICROSOFT-CDO-OWNERAPPTID:-882449284
+CREATED:20231005T230213Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/hb
+ b-kyqc-ugw\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231005T230213Z
+LOCATION:Tbd
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Save the Date - Grant (Cao) & Taylor's Wedding
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

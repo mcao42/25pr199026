@@ -1,0 +1,64 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+X-LIC-LOCATION:America/Los_Angeles
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/Los_Angeles:20231219T170000
+DTEND;TZID=America/Los_Angeles:20231219T190000
+DTSTAMP:20231213T230722Z
+ORGANIZER;CN=Yu Family Master Calendar:mailto:rbadja8sdd16ci0dkso99irits@gr
+ oup.calendar.google.com
+UID:366cgc3i9d4noealk6g0jj599i@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=kpadmanabhan@alumni.princeton.edu;X-NUM-GUESTS=0:mailto:kpadmanabha
+ n@alumni.princeton.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=JP Crametz;X-NUM-GUESTS=0:mailto:jp@newsbit.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Thanh Huynh;X-NUM-GUESTS=0:mailto:thanhxhuynh2003@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=hanglhoang@gmail.com;X-NUM-GUESTS=0:mailto:hanglhoang@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Jeff Yu;X-NUM-GUESTS=0:mailto:yu.jeffrey.c@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Tamar Ravid;X-NUM-GUESTS=0:mailto:travid@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Mark Cao;X-NUM-GUESTS=0:mailto:mark.cao@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/kbj-kovz-tzt
+X-MICROSOFT-CDO-OWNERAPPTID:1745640092
+CREATED:20231213T230720Z
+DESCRIPTION:If you'd like to carpool\, meet at the Yu's at 5:00.  Otherwise
+ \, let's meet at the entrance of the Oakland zoom to go in together.\n\n-::
+ ~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~::~:~::-\nJoin with Google Meet: https://meet.google.com/kbj-kovz-tzt\n\nL
+ earn more about Meet at: https://support.google.com/a/users/answer/9282720\
+ n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231213T230720Z
+LOCATION:25720 Crestfield Circle\, Castro Valley\, CA 94552\; Oakland Zoo\,
+  9777 Golf Links Rd\, Oakland\, CA 94605\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Holiday Glowfari (5:00p Yu's\, 5:30 Oakland Zoo)
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

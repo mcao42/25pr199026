@@ -1,0 +1,9 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 17.3.1//EN
+N:;Dentist Cao;;;
+FN:Dentist Cao
+TEL;type=WORK;type=VOICE;type=pref:4089938624
+TEL;type=HOME;type=VOICE:4089938664
+ADR;type=OTHER;type=pref:;;2114 Senter Rd\nPhong 3;San Jose;CA;us;United States
+END:VCARD

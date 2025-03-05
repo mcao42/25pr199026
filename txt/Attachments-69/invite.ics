@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+X-LIC-LOCATION:America/Chicago
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/Chicago:20241012T160000
+DTEND;TZID=America/Chicago:20241012T210000
+DTSTAMP:20240823T224141Z
+ORGANIZER;CN=Yu Family Master Calendar:mailto:rbadja8sdd16ci0dkso99irits@gr
+ oup.calendar.google.com
+UID:cpj64d1m68sj6b9j6sq64b9kcdgjabb170qm2b9i6oojcchp6kpm4dj36o@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Jackie Yu;X-NUM-GUESTS=0:mailto:jacquelinekyu@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Jeff Yu;X-NUM-GUESTS=0:mailto:yu.jeffrey.c@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Mark Cao;X-NUM-GUESTS=0:mailto:mark.cao@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Caroline Yu;X-NUM-GUESTS=0:mailto:carolinejyu@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=thanhxhuynh2003@yahoo.com;X-NUM-GUESTS=0:mailto:thanhxhuynh2003@yah
+ oo.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/hbb-kyqc-ugw
+X-MICROSOFT-CDO-OWNERAPPTID:-882449284
+CREATED:20231005T230213Z
+DESCRIPTION:<a href="https://www.theknot.com/us/taylor-lassi-and-grant-cao-
+ oct-2024">https://www.theknot.com/us/taylor-lassi-and-grant-cao-oct-2024</a
+ >\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/hbb-kyqc-
+ ugw\n\nLearn more about Meet at: https://support.google.com/a/users/answer/
+ 9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20240823T224138Z
+LOCATION:Banquets of Minnesota\, 6310 Hwy 65 NE\, Fridley\, MN 55432\, USA
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Grant & Taylor's Wedding (10/12/24)
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

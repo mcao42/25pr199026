@@ -1,0 +1,55 @@
+Subject: Delivery Status Notification (Failure)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Date: 1/23/2023, 10:27 AM
+To: mark.cao@gmail.com
+
+
+Error Icon
+
+
+    Address not found
+
+Your message wasn't delivered to *jackiekyu@gmail.com* because the 
+address couldn't be found, or is unable to receive mail.
+LEARN MORE <https://support.google.com/mail/?p=NoSuchUser>
+
+The response was:
+
+550 5.1.1 The email account that you tried to reach does not exist. 
+Please try double-checking the recipient's email address for typos or 
+unnecessary spaces. Learn more at 
+https://support.google.com/mail/?p=NoSuchUser 
+u22-20020a170902a61600b001947221dc94sor412plq.153 - gsmtp
+
+
+Reporting-MTA: dns; googlemail.com
+Arrival-Date: Mon, 23 Jan 2023 10:27:02 -0800 (PST)
+X-Original-Message-ID:<CAB=4odtyFoXVQ0xb5WimHkAUjRUr53pJFuKeB2XgA8WvKMP2gQ@mail.gmail.com>
+
+Final-Recipient: rfc822;jackiekyu@gmail.com
+Action: failed
+Status: 5.1.1
+Diagnostic-Code: smtp; 550-5.1.1 The email account that you tried to reach does not exist. Please try
+  550-5.1.1 double-checking the recipient's email address for typos or
+  550-5.1.1 unnecessary spaces. Learn more at
+  550 5.1.1https://support.google.com/mail/?p=NoSuchUser u22-20020a170902a61600b001947221dc94sor412plq.153 - gsmtp
+Last-Attempt-Date: Mon, 23 Jan 2023 10:27:03 -0800 (PST)
+
+
+ForwardedMessage.eml
+
+Subject:
+Blood glucose levels
+From:
+Mark Cao <mark.cao@gmail.com>
+Date:
+1/23/2023, 10:26 AM
+
+To:
+Hanh Yu <hanhcaoyu@gmail.com>, Jacqueline Yu <jackiekyu@gmail.com>, HVC 
+BUS <hvcbus@gmail.com>
+
+
+Attachments:
+
+ForwardedMessage.eml	2.2 KB

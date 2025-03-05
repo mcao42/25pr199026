@@ -1,0 +1,42 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20221225T210000Z
+DTEND:20221225T233000Z
+DTSTAMP:20221211T232724Z
+ORGANIZER;CN=Yu Family Master Calendar:mailto:rbadja8sdd16ci0dkso99irits@gr
+ oup.calendar.google.com
+UID:68o3acr46ko36bb4coq36b9k6so38bb2cdgj0b9mccom4eb66oqjec1pc8@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Hien Cao;X-NUM-GUESTS=0:mailto:hcaosc@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Hang Hoang;X-NUM-GUESTS=0:mailto:hanglhoang@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Kevin Moyung;X-NUM-GUESTS=0:mailto:kevinmoyung@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=mark.cao@gmail.com;X-NUM-GUESTS=0:mailto:mark.cao@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Christine Mardakis;X-NUM-GUESTS=0:mailto:cemardakis@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Thanh X. Huynh;X-NUM-GUESTS=0:mailto:thanhxhuynh2003@yahoo.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=HVC BUS;X-NUM-GUESTS=0:mailto:hvc_bus@yahoo.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/dys-hxii-kvv
+X-MICROSOFT-CDO-OWNERAPPTID:-769542482
+CREATED:20221211T232721Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/dy
+ s-hxii-kvv\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20221211T232721Z
+LOCATION:7 Dublin Court\nPleasant Hill\, CA 94523\nUSA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Family Christmas Lunch @ Hien & Chris's
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

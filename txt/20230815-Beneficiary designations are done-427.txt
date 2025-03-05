@@ -1,0 +1,88 @@
+Subject: Beneficiary designations are done
+From: Mark Cao <mark.cao@gmail.com>
+Date: 8/15/2023, 12:17 PM
+To: Hien Cao <hcaosc@gmail.com>, Hanh Yu <hanhcaoyu@gmail.com>
+
+
+All the beneficiary designations that were possible to do, are now 
+completed.
+
+But I couldn't do the following due to their differing policy, so I'll 
+simply transfer out all the money to BofA:
+
+* Chase checking and savings (should take less than two weeks if I try 
+to do $5K per day)
+* Citi checking and savings (relatively inactive, small amount of cash)
+
+I didn't bother with the "death of beneficiary before the owner" case, 
+since the chances of that are slim, and you didn't tell me your 
+preference.  So in all cases, the untimely death of one of you will 
+result in the other (*not* your children) getting the asset.
+
+FYI, previously, the accounts mostly had no beneficiary designations.  A 
+couple of accounts listed Mom while a couple of accounts named Hanh as 
+the beneficiary.
+
+Probably before early September I'll export all his asset statements.  
+Hopefully his statements will show evidence of beneficiary designations.
+
+Other news:
+
+* Regarding brokerage accounts:  I told Dad I thought his putting $100K 
+in cash and fixed income in his brokerage accounts is too conservative, 
+considering that he'll eat into his other $100K of liquid cash very 
+slowly (considering he should eventually get $6K/month of rental 
+revenue).  But he disagreed and said to just leave the brokerage 
+accounts as he set them up.
+
+* iPhone to be returned to Hien soon, or at least fair compensation for it.
+
+Huy
+
+On Thu, Aug 3, 2023, 3:22 PM Mark Cao <mark.cao@gmail.com 
+<mailto:mark.cao@gmail.com>> wrote:
+
+    The beneficiary designations are now almost completed. The POA has
+    been submitted for all accounts, or the beneficiary designations
+    were directly done.
+
+    For the accounts where a POA was submitted, it should take another
+    week to either transfer the funds out (to BofA, where beneficiaries
+    are designated) or to designate beneficiaries using the POA
+    authority.  Once everything is completed, I'll record the info.
+
+    On a different topic:  I notice that his brokerage accounts are very
+    conservative.
+
+    Schwab $120K - most of it is in a mutual fund.  Okay.
+    BofA $30K.  Cash!
+    Chase $73K.  Fixed income.
+
+    There is $30K + $73K that is too conservatively invested,
+    considering that he has $100K+ of cash elsewhere.  I will ask him if
+    he wants the BofA and Chase in an index fund instead.
+
+    Huy
+
+    On Fri, Jul 28, 2023 at 10:45 AM Mark Cao <mark.cao@gmail.com
+    <mailto:mark.cao@gmail.com>> wrote:
+
+        I'm putting a priority on:
+
+        * making sure all of Dad's liquid assets are beneficiary-designated
+        * transferring all checking/savings cash to BofA
+        * transferring brokerage assets to BofA, *if* the broker does
+        not allow me to designate beneficiaries using the POA
+            - the same goes for money-market accounts
+
+        The following don't need to be transferred right away to BofA:
+
+        * brokerage accounts and money-market accounts that do allow a
+        POA to designate the beneficiaries
+
+        The POA assignment definitely allows all financial transactions
+        (hence my ability to transfer any assets to BofA).  The gray
+        area is whether beneficiaries can be changed by the POA
+        appointee, with different banks having different rules.
+
+        Huy

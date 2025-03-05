@@ -1,0 +1,66 @@
+Subject: Delivery Status Notification (Failure)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Date: 9/18/2023, 8:56 PM
+To: mark.cao@gmail.com
+
+
+Error Icon
+
+
+    Address not found
+
+Your message wasn't delivered to *Hanh.Cao.Yu@standfordalumni.org* 
+because the address couldn't be found, or is unable to receive mail.
+LEARN MORE <https://support.google.com/mail/?p=NoSuchUser>
+
+The response from the remote server was:
+
+550 5.1.1 The email account that you tried to reach does not exist. 
+Please try double-checking the recipient's email address for typos or 
+unnecessary spaces. Learn more at 
+https://support.google.com/mail/?p=NoSuchUser 
+l134-20020a25258c000000b00d780ceaf524si1431682ybl.2 - gsmtp
+
+
+Reporting-MTA: dns; googlemail.com
+Arrival-Date: Mon, 18 Sep 2023 20:56:42 -0700 (PDT)
+X-Original-Message-ID:<CAB=4odvgMYiroCK3LtBzQhBHXKGuFNb2b_23wF=27T0wNesW4A@mail.gmail.com>
+
+Final-Recipient: rfc822;Hanh.Cao.Yu@standfordalumni.org
+Action: failed
+Status: 5.1.1
+Remote-MTA: dns; gmr-smtp-in.l.google.com. (2607:f8b0:4003:c13::e, the server
+  for the domain standfordalumni.org.)
+Diagnostic-Code: smtp; 550-5.1.1 The email account that you tried to reach does not exist. Please try
+  550-5.1.1 double-checking the recipient's email address for typos or
+  550-5.1.1 unnecessary spaces. Learn more at
+  550 5.1.1https://support.google.com/mail/?p=NoSuchUser l134-20020a25258c000000b00d780ceaf524si1431682ybl.2 - gsmtp
+Last-Attempt-Date: Mon, 18 Sep 2023 20:56:43 -0700 (PDT)
+
+
+ForwardedMessage.eml
+
+Subject:
+Dinner Party for Mr. Ho on Saturday, 9/23: 12 guests + 1 resident
+From:
+Mark Cao <mark.cao@gmail.com>
+Date:
+9/18/2023, 8:56 PM
+
+To:
+HVC BUS <hvc_bus@yahoo.com>, Thanh Xuan Huynh 
+<Thanhxhuynh2003@yahoo.com>, Grace Cao <graceraecao@gmail.com>, 
+Hanh.Cao.Yu@standfordalumni.org, Jeffrey Yu <jcyu@alumni.princeton.edu>, 
+Jacqueline Yu <jackiekyu@gmail.com>, Sylvia Hoang 
+<sylviahoangmd02@yahoo.com>, Ha Hoang <hoangthanhha21@yahoo.com>, Burton 
+Weaver <trey4049@yahoo.com>, Lucy Hoang <hanglhoang@gmail.com>, Leo Cao 
+<leocao1213@gmail.com>
+CC:
+Paula Spanek <pspanek@oakmontmg.com>, "John D. Diaz" 
+<jddiaz@oakmontsl.onmicrosoft.com>, Sherry Theam <stheam@oakmontmg.com>, 
+San Jose Concierge <sanjose.concierge@oakmontmg.com>
+
+
+Attachments:
+
+ForwardedMessage.eml	3.0 KB
