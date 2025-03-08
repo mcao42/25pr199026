@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+import glob
+from bs4 import BeautifulSoup
+
+# Process files matching the wildcard patterns
+for filename in (
+    glob.glob("Group*.html") + 
+    glob.glob("**/*Text*.html", recursive=True)
+):
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            soup = BeautifulSoup(file.read(), 'html.parser')
+            
+            # Extract group conversation participants if present
+            participants_div = soup.find('div', class_='participants')
+            if participants_div:
+                print(participants_div.get_text(strip=True))
+            
+            # Extract each message
+            for message_div in soup.find_all('div', class_='message'):
+                # Extract timestamp
+                timestamp = message_div.find('abbr', class_='dt')['title']
+                
+                # Extract sender - handle "Me" case
+                sender_elem = message_div.find('cite', class_='sender')
+                if sender_elem.find('abbr', class_='fn', title=''):
+                    sender = "Me"
+                else:
+                    sender = sender_elem.get_text(strip=True)
+                
+                # Extract message content - handle <br> tags
+                q_elem = message_div.find('q')
+                for br in q_elem.find_all('br'):
+                    br.replace_with(' ')
+                message = q_elem.get_text(strip=True)
+                
+                # Print in the requested format
+                print(f"{timestamp}: {sender}: {message}")
+            
+            print()  # Add blank line between files
+    except Exception as e:
+        print(f"Error processing {filename}: {e}", file=sys.stderr)
+
