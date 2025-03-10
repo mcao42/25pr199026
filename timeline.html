@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline</title>
+    <style>
+        :root {
+            --relocation-color: #8dd3c7;
+            --health-incident-color: #fb8072;
+            --health-change-color: #fdb462;
+            --trip-color: #80b1d3;
+            --intervention-color: #bebada;
+            --legal-color: #bc80bd;
+            --event-color: #b3de69;
+            --matter-color: #d9d9d9;
+            --personal-incident-color: #ffed6f;
+            
+            --timeline-line-color: #ccc;
+            --background-color: #f8f9fa;
+            --card-background: #fff;
+            --text-color: #333;
+            --header-color: #2c3e50;
+            --border-radius: 8px;
+            --card-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --hover-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+        
+        h1 {
+            margin: 0;
+            color: var(--header-color);
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            position: sticky;
+            top: 0;
+            background: var(--background-color);
+            padding: 10px 0;
+            z-index: 100;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .filter-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            box-shadow: 0 0 0 2px #333;
+        }
+        
+        /* Timeline container - now a single column */
+        .timeline-container {
+            position: relative;
+        }
+        
+        /* Content grid - now takes full width */
+        .timeline-content {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-gap: 15px;
+        }
+        
+        /* Event cards */
+        .event-card {
+            grid-column: auto / span 1;
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 15px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .event-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .event-date {
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .event-duration {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        /* Event types */
+        .event-Relocation { background-color: var(--relocation-color); grid-column: 1; }
+        .event-Health-Incident { background-color: var(--health-incident-color); grid-column: 2; }
+        .event-Health-Change { background-color: var(--health-change-color); grid-column: 3; }
+        .event-Trip { background-color: var(--trip-color); grid-column: 4; }
+        .event-Intervention { background-color: var(--intervention-color); grid-column: 5; }
+        .event-Legal { background-color: var(--legal-color); grid-column: 6; }
+        .event-Event { background-color: var(--event-color); grid-column: 7; }
+        .event-Matter { background-color: var(--matter-color); grid-column: 8; }
+        .event-Personal-Incident { background-color: var(--personal-incident-color); grid-column: 9; }
+        
+        /* Long events */
+        .long-event-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: rgba(0,0,0,0.2);
+        }
+        
+        /* No events message */
+        .no-events {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-style: italic;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Toggle for compact view */
+        .view-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--header-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        
+        .view-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Compact view styles */
+        .compact-view .event-card {
+            padding: 8px;
+        }
+        
+        .compact-view .event-title {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        
+        .compact-view .event-date {
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+        
+        .compact-view .event-duration {
+            font-size: 10px;
+        }
+        
+        /* Search box */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .search-box {
+            width: 300px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
+        
+        /* Export button */
+        .export-btn {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background-color: var(--header-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .export-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Timeline of Key Events 2022-2025</h1>
+        </header>
+        
+        <div class="search-container">
+            <input type="text" id="searchBox" class="search-box" placeholder="Search events...">
+            <button id="exportBtn" class="export-btn">Export</button>
+        </div>
+        
+        <!-- Legend removed as requested -->
+        
+        <div class="filters">
+            <button class="filter-btn active" data-type="all" style="background-color: #eee;">All</button>
+            <button class="filter-btn" data-type="Relocation" style="background-color: var(--relocation-color);">Relocation</button>
+            <button class="filter-btn" data-type="Health-Incident" style="background-color: var(--health-incident-color);">Health Incident</button>
+            <button class="filter-btn" data-type="Health-Change" style="background-color: var(--health-change-color);">Health Change</button>
+            <button class="filter-btn" data-type="Trip" style="background-color: var(--trip-color);">Trip</button>
+            <button class="filter-btn" data-type="Intervention" style="background-color: var(--intervention-color);">Intervention</button>
+            <button class="filter-btn" data-type="Legal" style="background-color: var(--legal-color);">Legal</button>
+            <button class="filter-btn" data-type="Event" style="background-color: var(--event-color);">Event</button>
+            <button class="filter-btn" data-type="Matter" style="background-color: var(--matter-color);">Matter</button>
+            <button class="filter-btn" data-type="Personal-Incident" style="background-color: var(--personal-incident-color);">Personal Incident</button>
+        </div>
+        
+        <div class="timeline-container" id="timelineContainer">
+            <!-- Timeline axis removed as requested -->
+            
+            <!-- Timeline content grid -->
+            <div class="timeline-content" id="timelineContent">
+                <!-- Event cards will be generated dynamically -->
+            </div>
+        </div>
+        
+        <button class="view-toggle" id="viewToggle">
+            <span id="viewToggleIcon">⊕</span>
+        </button>
+    </div>
+    
+    <script>
+        // Execute immediately, don't wait for DOMContentLoaded
+        (function() {
+            // Event data is already defined, don't need to load from Excel
+            const events = [
+                {
+                    title: "Settlement for Ho's 2019 accident ($250K gross)",
+                    startDate: new Date("2019-03-15T07:00:00.000Z"),
+                    endDate: new Date("2024-02-17T08:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202307suitsettlement"
+                },
+                {
+                    title: "High-conflict tenants at Ho's room rentals",
+                    startDate: new Date("2022-09-01T07:00:00.000Z"),
+                    endDate: new Date("2023-07-18T07:00:00.000Z"),
+                    type: "Matter",
+                    link: "#202211conflict, #202301exploitation, #202301problems"
+                },
+	{
+        title: "Visit to father",
+        startDate: new Date("2022-09-02T07:00:00.000Z"),
+        endDate: new Date("2022-09-05T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+	},
+                {
+                    title: "Ho's knee issues with paramedic transport to Fountain Valley Hospital",
+                    startDate: new Date("2022-11-21T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Incident",
+                    link: "#202211hospital"
+                },
+                {
+                    title: "Frequent police incidents at Huntington Beach property",
+                    startDate: new Date("2022-12-01T08:00:00.000Z"),
+                    endDate: new Date("2023-04-30T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202304police"
+                },
+                {
+                    title: "Father living in squalor with other elderly individuals",
+                    startDate: new Date("2022-12-01T08:00:00.000Z"),
+                    endDate: new Date("2023-07-11T07:00:00.000Z"),
+                    type: "Matter",
+                    link: "#202303hbtrip, #202304squalor"
+                },
+                {
+                    title: "Ho's canceled Southwest flight during Christmas travel",
+                    startDate: new Date("2022-12-24T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Personal-Incident",
+                    link: "#202212travel"
+                },
+                {
+                    title: "Ho's loss of bag containing $1K and important documents",
+                    startDate: new Date("2023-01-06T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Personal-Incident",
+                    link: "#202301problems"
+                },
+                {
+                    title: "Initial discussion of conservatorship options",
+                    startDate: new Date("2023-01-09T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Intervention",
+                    link: "#202301options"
+                },
+    {
+        title: "Visit to father; bring him to San Jose",
+        startDate: new Date("2023-01-13T08:00:00.000Z"),
+        endDate: new Date("2023-01-15T08:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Family gets Ho to Bay Area",
+                    startDate: new Date("2023-01-14T08:00:00.000Z"),
+                    endDate: new Date("2023-02-18T08:00:00.000Z"),
+                    type: "Intervention",
+                    link: "#202301bayarea"
+                },
+                {
+                    title: "Ho's diabetes management and glucose testing documentation",
+                    startDate: new Date("2023-01-19T08:00:00.000Z"),
+                    endDate: new Date("2023-01-26T08:00:00.000Z"),
+                    type: "Health-Change",
+                    link: "#202301healthmon"
+                },
+                {
+                    title: "Several eviction proceedings against tenant Ken",
+                    startDate: new Date("2023-01-23T08:00:00.000Z"),
+                    endDate: new Date("2023-06-12T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202301keneviction, #202303evictions, #202303legalthreats"
+                },
+                {
+                    title: "Tenant Ken receives 3-day Notice to Quit",
+                    startDate: new Date("2023-01-23T08:00:00.000Z"),
+                    endDate: new Date("2023-03-06T08:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202301keneviction"
+                },
+                {
+                    title: "Change of healthcare directive",
+                    startDate: new Date("2023-02-04T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Event",
+                    link: ""
+                },
+                {
+                    title: "Ho diagnosed with mild to moderate dementia",
+                    startDate: new Date("2023-02-07T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202302dementia"
+                },
+                {
+                    title: "DMV reporting and revocation of driving privileges",
+                    startDate: new Date("2023-02-08T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Legal",
+                    link: "#202302dmv"
+                },
+                {
+                    title: "Ho's attempts to return to Huntington Beach",
+                    startDate: new Date("2023-02-12T08:00:00.000Z"),
+                    endDate: new Date("2023-02-18T08:00:00.000Z"),
+                    type: "Matter",
+                    link: "#202302hbreturn"
+                },
+                {
+                    title: "Ho returns to Huntington Beach by himself",
+                    startDate: new Date("2023-02-18T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Matter",
+                    link: "#202302hbreturn"
+                },
+                {
+                    title: "Ho's restraining order request against tenant Ken",
+                    startDate: new Date("2023-03-02T08:00:00.000Z"),
+                    endDate: new Date("2023-03-06T08:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202303evictions"
+                },
+                {
+                    title: "Ho cancelling 3-day eviction and restraint order against Ken",
+                    startDate: new Date("2023-03-06T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Legal",
+                    link: "#202303evictions"
+                },
+    {
+        title: "Started father's evictions of Ken and Jeff",
+        startDate: new Date("2023-03-11T08:00:00.000Z"),
+        endDate: new Date("2023-03-13T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Tenant Ken receives 60-day Notice to Vacate",
+                    startDate: new Date("2023-03-14T07:00:00.000Z"),
+                    endDate: new Date("2023-05-12T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202303legalthreats"
+                },
+                {
+                    title: "Tenant Jeff receives 60-day Notice to Vacate",
+                    startDate: new Date("2023-03-14T07:00:00.000Z"),
+                    endDate: new Date("2023-05-12T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202303legalthreats"
+                },
+                {
+                    title: "Adult Protective Services involvement planning",
+                    startDate: new Date("2023-04-09T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Intervention",
+                    link: "#202304apsplan"
+                },
+                {
+                    title: "Initial contact with Adult Protective Services",
+                    startDate: new Date("2023-04-10T07:00:00.000Z"),
+                    endDate: new Date("2023-04-12T07:00:00.000Z"),
+                    type: "Intervention",
+                    link: "#202304apscontact"
+                },
+    {
+        title: "Worked on father's evictions and County cases",
+        startDate: new Date("2023-04-13T07:00:00.000Z"),
+        endDate: new Date("2023-04-16T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Meeting with APS Social Worker Michelle Nguyen",
+                    startDate: new Date("2023-04-15T07:00:00.000Z"),
+                    endDate: new Date("2023-04-19T07:00:00.000Z"),
+                    type: "Intervention",
+                    link: "#202304michelle"
+                },
+                {
+                    title: "Documented inappropriate/unsafe driving despite restrictions",
+                    startDate: new Date("2023-04-21T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Legal",
+                    link: "#202304driving"
+                },
+                {
+                    title: "Consultation with conservatorship attorneys",
+                    startDate: new Date("2023-04-25T07:00:00.000Z"),
+                    endDate: new Date("2023-04-29T07:00:00.000Z"),
+                    type: "Intervention",
+                    link: "#202304conservatorship"
+                },
+                {
+                    title: "Development of intervention plan",
+                    startDate: new Date("2023-04-28T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Intervention",
+                    link: "#202304plan"
+                },
+    {
+        title: "Keeping tabs on my father and his tenants. Handled police incident between tenants.",
+        startDate: new Date("2023-04-28T07:00:00.000Z"),
+        endDate: new Date("2023-04-29T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Request for police records to document tenant issues",
+                    startDate: new Date("2023-05-02T07:00:00.000Z"),
+                    endDate: new Date("2023-05-08T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202305publicguardian"
+                },
+                {
+                    title: "Contact with Deputy Public Guardian Kim Swanson",
+                    startDate: new Date("2023-05-02T07:00:00.000Z"),
+                    endDate: new Date("2023-05-05T07:00:00.000Z"),
+                    type: "Intervention",
+                    link: "#202305publicguardian"
+                },
+    {
+        title: "POA, tenant evictions, home fixes.",
+        startDate: new Date("2023-05-11T07:00:00.000Z"),
+        endDate: new Date("2023-05-15T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Mark requests a temporary restraining order against Annalise",
+                    startDate: new Date("2023-05-12T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Legal",
+                    link: "#202305police"
+                },
+                {
+                    title: "Tenant Ken is subject of unlawful detainer case",
+                    startDate: new Date("2023-05-12T07:00:00.000Z"),
+                    endDate: new Date("2023-06-12T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202303legalthreats"
+                },
+                {
+                    title: "Durable Power of Attorney assigned to Hanh",
+                    startDate: new Date("2023-05-13T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Event",
+                    link: "#202305poa"
+                },
+                {
+                    title: "Durable Power of Attorney assigned to Mark",
+                    startDate: new Date("2023-05-15T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Event",
+                    link: "#202305poa"
+                },
+    {
+        title: "Visit father. Helped Ken move out.",
+        startDate: new Date("2023-05-19T07:00:00.000Z"),
+        endDate: new Date("2023-05-23T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Ho's attempt to gift Huntington Beach property to Mark",
+                    startDate: new Date("2023-05-23T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Matter",
+                    link: "#202305trust"
+                },
+                {
+                    title: "Ho's changes to trust and will after POA obtained",
+                    startDate: new Date("2023-05-23T07:00:00.000Z"),
+                    endDate: new Date("2023-06-17T07:00:00.000Z"),
+                    type: "Event",
+                    link: "#202305trust"
+                },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-05-25T07:00:00.000Z"),
+        endDate: new Date("2023-05-28T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Probate avoidance planning for Ho's assets",
+                    startDate: new Date("2023-05-31T07:00:00.000Z"),
+                    endDate: new Date("2023-06-05T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202305estateplan"
+                },
+    {
+        title: "Visit father. Helped Ken move out.",
+        startDate: new Date("2023-06-03T07:00:00.000Z"),
+        endDate: new Date("2023-06-04T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Unsuccessful attempted recovery of $60K loan to Jessica Cao",
+                    startDate: new Date("2023-06-06T07:00:00.000Z"),
+                    endDate: new Date("2024-05-23T07:00:00.000Z"),
+                    type: "Legal",
+                    link: "#202306jessica"
+                },
+    {
+        title: "Help with father's girlfriend problems. Home fixes.",
+        startDate: new Date("2023-06-08T07:00:00.000Z"),
+        endDate: new Date("2023-06-11T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Car trip",
+        startDate: new Date("2023-06-15T07:00:00.000Z"),
+        endDate: new Date("2023-06-15T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Visited father. Attempted to find new home for cats. Home fixes.",
+        startDate: new Date("2023-06-23T07:00:00.000Z"),
+        endDate: new Date("2023-06-27T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-06-30T07:00:00.000Z"),
+        endDate: new Date("2023-07-04T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Concerns about Annalise attempting to marry Ho",
+                    startDate: new Date("2023-07-01T07:00:00.000Z"),
+                    endDate: new Date("2023-07-05T07:00:00.000Z"),
+                    type: "Intervention",
+                    link: "#202307annalise"
+                },
+                {
+                    title: "Negotiated with Ho's niece Thao for loan balance repayment",
+                    startDate: new Date("2023-07-10T07:00:00.000Z"),
+                    endDate: new Date("2023-08-11T07:00:00.000Z"),
+                    type: "Legal",
+                    link: ""
+                },
+    {
+        title: "Ho's stroke. Took him to ER",
+        startDate: new Date("2023-07-11T07:00:00.000Z"),
+        endDate: new Date("2023-07-23T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Ho's stroke and hospitalization",
+                    startDate: new Date("2023-07-12T07:00:00.000Z"),
+                    endDate: new Date("2023-07-13T07:00:00.000Z"),
+                    type: "Health-Incident",
+                    link: "#202307stroke"
+                },
+                {
+                    title: "Transfer to skilled nursing facility",
+                    startDate: new Date("2023-07-14T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Relocation",
+                    link: "#202307snf"
+                },
+                {
+                    title: "Medical assessment stating one-year life expectancy",
+                    startDate: new Date("2023-07-17T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202307hanhargument"
+                },
+                {
+                    title: "Change of healthcare directive after stroke",
+                    startDate: new Date("2023-07-18T07:00:00.000Z"),
+                    endDate: new Date("2023-08-04T07:00:00.000Z"),
+                    type: "Event",
+                    link: "#202307ahcdrevision"
+                },
+                {
+                    title: "Three-day eviction of Annalise",
+                    startDate: new Date("2023-07-18T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Legal",
+                    link: ""
+                },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-07-28T07:00:00.000Z"),
+        endDate: new Date("2023-08-06T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Tenant Jeff receives 30-day Notice to Vacate",
+                    startDate: new Date("2023-08-01T07:00:00.000Z"),
+                    endDate: new Date("2023-09-01T07:00:00.000Z"),
+                    type: "Legal",
+                    link: ""
+                },
+                {
+                    title: "Ho moved to Sterling Senior Living in Huntington Beach",
+                    startDate: new Date("2023-08-01T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Relocation",
+                    link: "#202309transfer"
+                },
+                {
+                    title: "Ho receives physical therapy after stroke",
+                    startDate: new Date("2023-08-01T07:00:00.000Z"),
+                    endDate: new Date("2023-10-15T07:00:00.000Z"),
+                    type: "Health-Change",
+                    link: "#202307health"
+                },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-08-11T07:00:00.000Z"),
+        endDate: new Date("2023-08-13T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Ho's inappropriate sexual behavior in care facility",
+                    startDate: new Date("2023-08-14T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Matter",
+                    link: "#202308dirtyoldman"
+                },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-08-18T07:00:00.000Z"),
+        endDate: new Date("2023-08-20T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-08-25T07:00:00.000Z"),
+        endDate: new Date("2023-08-25T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Escort from OC to SJ",
+        startDate: new Date("2023-09-02T07:00:00.000Z"),
+        endDate: new Date("2023-09-03T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Ho moved to Oakmont of San Jose",
+                    startDate: new Date("2023-09-03T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Relocation",
+                    link: "#202309transfer"
+                },
+                {
+                    title: "Ho exhibits concerning paranoid thinking at Oakmont",
+                    startDate: new Date("2023-09-04T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Matter",
+                    link: "#202308dirtyoldman"
+                },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-09-08T07:00:00.000Z"),
+        endDate: new Date("2023-09-10T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-09-15T07:00:00.000Z"),
+        endDate: new Date("2023-09-17T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Unknown",
+        startDate: new Date("2023-09-30T07:00:00.000Z"),
+        endDate: new Date("2023-10-01T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Unknown",
+        startDate: new Date("2023-10-06T07:00:00.000Z"),
+        endDate: new Date("2023-10-08T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Unknown",
+        startDate: new Date("2023-10-14T07:00:00.000Z"),
+        endDate: new Date("2023-10-15T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+    {
+        title: "Unknown",
+        startDate: new Date("2023-11-02T07:00:00.000Z"),
+        endDate: new Date("2023-11-05T07:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Ho's significant health issues documented by physician",
+                    startDate: new Date("2023-11-21T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202311doctor"
+                },
+                {
+                    title: "Ho prescribed Zoloft for depression",
+                    startDate: new Date("2023-11-21T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202311doctor"
+                },
+                {
+                    title: "Ho's rapid mental decline documented",
+                    startDate: new Date("2023-12-01T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202401motherstrip"
+                },
+                {
+                    title: "Ho develops delusions about Filipino workers causing his stroke",
+                    startDate: new Date("2023-12-01T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202401motherstrip"
+                },
+                {
+                    title: "Ho moved to Ivy Park at San Jose",
+                    startDate: new Date("2023-12-01T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Relocation",
+                    link: ""
+                },
+    {
+        title: "Home Improvement",
+        startDate: new Date("2023-12-31T08:00:00.000Z"),
+        endDate: new Date("2024-01-05T08:00:00.000Z"),
+        type: "Trip",
+        link: ""
+    },
+                {
+                    title: "Ho moved to Kingdom Hearts care home",
+                    startDate: new Date("2024-02-10T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Relocation",
+                    link: "#202402carehome"
+                },
+                {
+                    title: "Emergency hospitalization for digestive problems",
+                    startDate: new Date("2024-06-26T07:00:00.000Z"),
+                    endDate: new Date("2024-06-28T07:00:00.000Z"),
+                    type: "Health-Incident",
+                    link: "#202406ervisit"
+                },
+                {
+                    title: "Transition to hospice care",
+                    startDate: new Date("2024-06-28T07:00:00.000Z"),
+                    endDate: null,
+                    type: "Health-Change",
+                    link: "#202406hospice"
+                },
+                {
+                    title: "Dispute over $4500 deposit for unauthorized facility transfer",
+                    startDate: new Date("2024-11-05T08:00:00.000Z"),
+                    endDate: new Date("2024-12-15T08:00:00.000Z"),
+                    type: "Matter",
+                    link: "#202410transferdispute, #202412party"
+                },
+                {
+                    title: "Care conference with healthcare providers",
+                    startDate: new Date("2024-11-14T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Event",
+                    link: "#202411conference"
+                },
+                {
+                    title: "Legal dispute over visitation rights",
+                    startDate: new Date("2025-01-17T08:00:00.000Z"),
+                    endDate: null,
+                    type: "Legal",
+                    link: "#202501careconcerns"
+                }
+            ];
+            
+            // Make sure DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializeTimeline);
+            } else {
+                initializeTimeline();
+            }
+            
+            function initializeTimeline() {
+                console.log("Initializing timeline with", events.length, "events");
+                
+                // DOM elements
+                const timelineContent = document.getElementById('timelineContent');
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const viewToggle = document.getElementById('viewToggle');
+                const viewToggleIcon = document.getElementById('viewToggleIcon');
+                const searchBox = document.getElementById('searchBox');
+                const exportBtn = document.getElementById('exportBtn');
+                const container = document.querySelector('.container');
+            
+                // Months array for readability
+                const months = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                
+                // Format date
+                function formatDate(dateStr) {
+                    const date = new Date(dateStr);
+                    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+                }
+                
+                // Calculate duration between dates
+                function calculateDuration(startDate, endDate) {
+                    if (!endDate) return null;
+                    
+                    const start = new Date(startDate);
+                    const end = new Date(endDate);
+                    
+                    const diffTime = Math.abs(end - start);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    if (diffDays < 30) {
+                        return `${diffDays} days`;
+                    } else if (diffDays < 365) {
+                        const months = Math.floor(diffDays / 30);
+                        return `${months} month${months > 1 ? 's' : ''}`;
+                    } else {
+                        const years = Math.floor(diffDays / 365);
+                        const remainingMonths = Math.floor((diffDays % 365) / 30);
+                        if (remainingMonths === 0) {
+                            return `${years} year${years > 1 ? 's' : ''}`;
+                        }
+                        return `${years} year${years > 1 ? 's' : ''}, ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
+                    }
+                }
+                
+                // Generate timeline directly from the events array
+                function generateTimeline() {
+                    console.log("Generating timeline...");
+                    
+                    if (!events || events.length === 0) {
+                        timelineContent.innerHTML = '<div class="no-events">No events to display</div>';
+                        return;
+                    }
+                    
+                    // Sort events by date
+                    events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+                    
+                    // Clear existing content
+                    timelineContent.innerHTML = '';
+                    
+                    // Directly add event cards to the timeline content
+                    events.forEach(event => {
+                        // Create event card
+                        const eventCard = document.createElement('div');
+                        eventCard.className = `event-card event-${event.type}`;
+                        eventCard.dataset.type = event.type;
+                        
+                        // Fix for multiple links or empty links
+                        let linkHref = event.link && event.link.trim() ? event.link : "";
+                        if (linkHref && linkHref.includes(',')) {
+                            linkHref = linkHref.split(',')[0].trim();
+                        }
+                        
+                        // Create card content
+                        eventCard.innerHTML = `
+                            <a href="summary.html${linkHref}" style="text-decoration: none; color: inherit;">
+                                <div class="event-title">${event.title}</div>
+                                <div class="event-date">${formatDate(event.startDate)}</div>
+                                ${event.endDate ? `
+                                    <div class="long-event-indicator"></div>
+                                    <div class="event-date">to ${formatDate(event.endDate)}</div>
+                                    <div class="event-duration">${calculateDuration(event.startDate, event.endDate)}</div>
+                                ` : ''}
+                            </a>
+                        `;
+                        
+                        // Add to the timeline content
+                        timelineContent.appendChild(eventCard);
+                    });
+                    
+                    // Initialize event handlers
+                    initEventHandlers();
+                    
+                    console.log("Timeline generation complete");
+                }
+                
+                // Initialize event handlers
+                function initEventHandlers() {
+                    console.log("Initializing event handlers");
+                    
+                    // Filter functionality
+                    filterButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            console.log("Filter clicked:", this.getAttribute('data-type'));
+                            
+                            // Remove active class from all buttons
+                            filterButtons.forEach(btn => btn.classList.remove('active'));
+                            
+                            // Add active class to clicked button
+                            this.classList.add('active');
+                            
+                            const filterType = this.getAttribute('data-type');
+                            
+                            // Filter the event cards
+                            const eventCards = document.querySelectorAll('.event-card');
+                            let visibleCount = 0;
+                            
+                            eventCards.forEach(card => {
+                                if (filterType === 'all' || card.dataset.type === filterType) {
+                                    card.style.display = 'block';
+                                    visibleCount++;
+                                } else {
+                                    card.style.display = 'none';
+                                }
+                            });
+                            
+                            console.log(`Filter ${filterType} applied: ${visibleCount} visible events`);
+                            
+                            // Show "no events" message if no events are visible
+                            let noEventsMsg = document.querySelector('.no-events');
+                            if (visibleCount === 0) {
+                                if (!noEventsMsg) {
+                                    noEventsMsg = document.createElement('div');
+                                    noEventsMsg.className = 'no-events';
+                                    noEventsMsg.textContent = 'No events match the current filter';
+                                    timelineContent.appendChild(noEventsMsg);
+                                }
+                            } else if (noEventsMsg) {
+                                noEventsMsg.remove();
+                            }
+                        });
+                    });
+                    
+                    // View toggle
+                    viewToggle.addEventListener('click', function() {
+                        container.classList.toggle('compact-view');
+                        if (container.classList.contains('compact-view')) {
+                            viewToggleIcon.textContent = '⊖';
+                        } else {
+                            viewToggleIcon.textContent = '⊕';
+                        }
+                        console.log("View toggled:", container.classList.contains('compact-view') ? "compact" : "normal");
+                    });
+                    
+                    // Search functionality
+                    searchBox.addEventListener('input', function() {
+                        const searchTerm = this.value.toLowerCase();
+                        console.log("Searching for:", searchTerm);
+                        
+                        const eventCards = document.querySelectorAll('.event-card');
+                        let visibleCount = 0;
+                        
+                        eventCards.forEach(card => {
+                            const title = card.querySelector('.event-title').textContent.toLowerCase();
+                            if (title.includes(searchTerm)) {
+                                card.style.display = 'block';
+                                visibleCount++;
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                        
+                        console.log(`Search results: ${visibleCount} matching events`);
+                        
+                        // Show "no events" message if no events are visible
+                        let noEventsMsg = document.querySelector('.no-events');
+                        if (visibleCount === 0) {
+                            if (!noEventsMsg) {
+                                noEventsMsg = document.createElement('div');
+                                noEventsMsg.className = 'no-events';
+                                noEventsMsg.textContent = 'No events match your search';
+                                timelineContent.appendChild(noEventsMsg);
+                            }
+                        } else if (noEventsMsg) {
+                            noEventsMsg.remove();
+                        }
+                    });
+                    
+                    // Export functionality
+                    exportBtn.addEventListener('click', function() {
+                        console.log("Export button clicked");
+                        alert('Export functionality would go here. This could export to PDF, CSV, or other formats.');
+                    });
+                }
+                
+                // Call the function to generate the timeline
+                generateTimeline();
+            }
+        })();
+    </script>
+</body>
+</html>
